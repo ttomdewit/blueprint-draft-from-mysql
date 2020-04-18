@@ -1,6 +1,5 @@
 <?php
 
-
 namespace BlueprintDraftFromMySQLSource\Factories;
 
 use BlueprintDraftFromMySQLSource\Columns\Integer\BigIncrementsColumn;
@@ -17,9 +16,9 @@ final class IncrementColumnFactory implements BuildColumnInterface
     public static function buildColumn(Column $column): ColumnInterface
     {
         switch ($column->getType()) {
-            case new SmallIntType:
+            case new SmallIntType():
                 return new SmallIncrementsColumn($column);
-            case new BigIntType:
+            case new BigIntType():
                 return new BigIncrementsColumn($column);
             default:
                 return new IncrementsColumn($column);

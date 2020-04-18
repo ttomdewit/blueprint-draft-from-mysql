@@ -1,6 +1,5 @@
 <?php
 
-
 namespace BlueprintDraftFromMySQLSource\Factories;
 
 use BlueprintDraftFromMySQLSource\Columns\Integer\BigIntegerColumn;
@@ -21,9 +20,9 @@ final class IntegerColumnFactory implements BuildColumnInterface
         }
 
         switch ($column->getType()) {
-            case new SmallIntType:
+            case new SmallIntType():
                 return new SmallIntegerColumn($column);
-            case new BigIntType:
+            case new BigIntType():
                 return new BigIntegerColumn($column);
             default:
                 return new IntegerColumn($column);

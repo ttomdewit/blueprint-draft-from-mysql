@@ -1,6 +1,5 @@
 <?php
 
-
 namespace BlueprintDraftFromMySQLSource\Factories;
 
 use BlueprintDraftFromMySQLSource\Columns\Date\DateColumn;
@@ -11,20 +10,19 @@ use BlueprintDraftFromMySQLSource\Interfaces\ColumnInterface;
 use Doctrine\DBAL\Schema\Column;
 use Doctrine\DBAL\Types\DateTimeType;
 use Doctrine\DBAL\Types\DateType;
-use function get_class;
 
 final class DateColumnFactory implements BuildColumnInterface
 {
     public static function buildColumn(Column $column): ColumnInterface
     {
-        if (get_class($column->getType()) === DateType::class) {
+        if (DateType::class === \get_class($column->getType())) {
             return new DateColumn($column);
         }
 
-        if (get_class($column->getType()) === DateTimeType::class) {
+        if (DateTimeType::class === \get_class($column->getType())) {
             return new DateTimeColumn($column);
         }
 
-        throw new UnsupportedColumnException;
+        throw new UnsupportedColumnException();
     }
 }

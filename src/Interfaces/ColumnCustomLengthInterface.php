@@ -1,6 +1,5 @@
 <?php
 
-
 namespace BlueprintDraftFromMySQLSource\Interfaces;
 
 interface ColumnCustomLengthInterface

@@ -2,12 +2,16 @@
 
 namespace Tests\Columns\Text;
 
-use Tests\TestCase;
 use BlueprintDraftFromMySQLSource\Factories\ColumnFactory;
+use Tests\TestCase;
 
-class LengthColumnTest extends TestCase
+/**
+ * @internal
+ * @coversNothing
+ */
+final class LengthColumnTest extends TestCase
 {
-    public function test_it_has_a_default_length(): void
+    public function testItHasADefaultLength(): void
     {
         // Given
         $schemaColumn = $this->getColumnFromTable('string_columns', 'string_column');
@@ -16,11 +20,11 @@ class LengthColumnTest extends TestCase
         $column = ColumnFactory::buildColumn($schemaColumn);
 
         // Then
-        $this->assertFalse($column->hasCustomLength());
-        $this->assertEquals(255, $column->getLength());
+        static::assertFalse($column->hasCustomLength());
+        static::assertSame(255, $column->getLength());
     }
 
-    public function test_it_can_set_a_custom_length(): void
+    public function testItCanSetACustomLength(): void
     {
         // Given
         $schemaColumn = $this->getColumnFromTable('string_columns', 'string_column_custom_length');
@@ -29,11 +33,11 @@ class LengthColumnTest extends TestCase
         $column = ColumnFactory::buildColumn($schemaColumn);
 
         // Then
-        $this->assertTrue($column->hasCustomLength());
-        $this->assertEquals(80, $column->getLength());
+        static::assertTrue($column->hasCustomLength());
+        static::assertSame(80, $column->getLength());
     }
 
-    public function test_it_can_set_a_custom_long_length(): void
+    public function testItCanSetACustomLongLength(): void
     {
         // Given
         $schemaColumn = $this->getColumnFromTable('string_columns', 'string_column_custom_long_length');
@@ -42,7 +46,7 @@ class LengthColumnTest extends TestCase
         $column = ColumnFactory::buildColumn($schemaColumn);
 
         // Then
-        $this->assertTrue($column->hasCustomLength());
-        $this->assertEquals(1000, $column->getLength());
+        static::assertTrue($column->hasCustomLength());
+        static::assertSame(1000, $column->getLength());
     }
 }

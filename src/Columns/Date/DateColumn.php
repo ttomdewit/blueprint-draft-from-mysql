@@ -1,8 +1,6 @@
 <?php
 
-
 namespace BlueprintDraftFromMySQLSource\Columns\Date;
-
 
 use BlueprintDraftFromMySQLSource\Columns\AbstractColumn;
 use BlueprintDraftFromMySQLSource\DataTypes;

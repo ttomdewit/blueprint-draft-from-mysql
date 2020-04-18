@@ -2,15 +2,19 @@
 
 namespace Tests\Factories\Text;
 
-use Tests\TestCase;
-use BlueprintDraftFromMySQLSource\Factories\ColumnFactory;
-use BlueprintDraftFromMySQLSource\Columns\Text\TextColumn;
 use BlueprintDraftFromMySQLSource\Columns\Text\LongTextColumn;
 use BlueprintDraftFromMySQLSource\Columns\Text\MediumTextColumn;
+use BlueprintDraftFromMySQLSource\Columns\Text\TextColumn;
+use BlueprintDraftFromMySQLSource\Factories\ColumnFactory;
+use Tests\TestCase;
 
-class TextColumnFactoryTest extends TestCase
+/**
+ * @internal
+ * @coversNothing
+ */
+final class TextColumnFactoryTest extends TestCase
 {
-    public function test_it_builds_text_column(): void
+    public function testItBuildsTextColumn(): void
     {
         // Given
         $schemaColumn = $this->getColumnFromTable('text_columns', 'text_column');
@@ -19,10 +23,10 @@ class TextColumnFactoryTest extends TestCase
         $column = ColumnFactory::buildColumn($schemaColumn);
 
         // Then
-        $this->assertInstanceOf(TextColumn::class, $column);
+        static::assertInstanceOf(TextColumn::class, $column);
     }
 
-    public function test_it_builds_mediumtext_column(): void
+    public function testItBuildsMediumtextColumn(): void
     {
         // Given
         $schemaColumn = $this->getColumnFromTable('text_columns', 'mediumtext_column');
@@ -31,10 +35,10 @@ class TextColumnFactoryTest extends TestCase
         $column = ColumnFactory::buildColumn($schemaColumn);
 
         // Then
-        $this->assertInstanceOf(MediumTextColumn::class, $column);
+        static::assertInstanceOf(MediumTextColumn::class, $column);
     }
 
-    public function test_it_builds_longtext_column(): void
+    public function testItBuildsLongtextColumn(): void
     {
         // Given
         $schemaColumn = $this->getColumnFromTable('text_columns', 'longtext_column');
@@ -43,6 +47,6 @@ class TextColumnFactoryTest extends TestCase
         $column = ColumnFactory::buildColumn($schemaColumn);
 
         // Then
-        $this->assertInstanceOf(LongTextColumn::class, $column);
+        static::assertInstanceOf(LongTextColumn::class, $column);
     }
 }

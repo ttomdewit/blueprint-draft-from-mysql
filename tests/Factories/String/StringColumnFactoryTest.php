@@ -3,12 +3,16 @@
 namespace Tests\Factories\String;
 
 use BlueprintDraftFromMySQLSource\Columns\String\StringColumn;
-use Tests\TestCase;
 use BlueprintDraftFromMySQLSource\Factories\ColumnFactory;
+use Tests\TestCase;
 
-class StringColumnFactoryTest extends TestCase
+/**
+ * @internal
+ * @coversNothing
+ */
+final class StringColumnFactoryTest extends TestCase
 {
-    public function test_it_builds_text_column(): void
+    public function testItBuildsTextColumn(): void
     {
         // Given
         $schemaColumn = $this->getColumnFromTable('string_columns', 'string_column');
@@ -17,6 +21,6 @@ class StringColumnFactoryTest extends TestCase
         $column = ColumnFactory::buildColumn($schemaColumn);
 
         // Then
-        $this->assertInstanceOf(StringColumn::class, $column);
+        static::assertInstanceOf(StringColumn::class, $column);
     }
 }

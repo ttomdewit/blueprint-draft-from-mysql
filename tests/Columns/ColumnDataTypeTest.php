@@ -2,10 +2,14 @@
 
 namespace Tests\Columns;
 
-use Tests\TestCase;
 use BlueprintDraftFromMySQLSource\Factories\ColumnFactory;
+use Tests\TestCase;
 
-class ColumnDataTypeTest extends TestCase
+/**
+ * @internal
+ * @coversNothing
+ */
+final class ColumnDataTypeTest extends TestCase
 {
     public function dataTypeProvider()
     {
@@ -174,18 +178,13 @@ class ColumnDataTypeTest extends TestCase
     }
 
     /**
-     * @param string $table
-     * @param string $column
-     * @param string $expectedDataType
-     *
      * @dataProvider dataTypeProvider
      */
-    public function test_it_determines_correct_datatype_for_column(
+    public function testItDeterminesCorrectDatatypeForColumn(
         string $table,
         string $column,
         string $expectedDataType
-    ): void
-    {
+    ): void {
         // Given
         $schemaColumn = $this->getColumnFromTable($table, $column);
 
@@ -194,6 +193,6 @@ class ColumnDataTypeTest extends TestCase
         $dataType = $column->getDataType();
 
         // Then
-        $this->assertEquals($expectedDataType, $dataType);
+        static::assertSame($expectedDataType, $dataType);
     }
 }

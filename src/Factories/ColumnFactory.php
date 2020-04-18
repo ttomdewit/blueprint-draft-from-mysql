@@ -25,25 +25,25 @@ final class ColumnFactory implements BuildColumnInterface
     public static function buildColumn(Column $column): ColumnInterface
     {
         switch ($column->getType()) {
-            case new TextType:
+            case new TextType():
                 return TextColumnFactory::buildColumn($column);
-            case new StringType:
+            case new StringType():
                 return new StringColumn($column);
-            case new DateType:
-            case new DateTimeType:
+            case new DateType():
+            case new DateTimeType():
                 return DateColumnFactory::buildColumn($column);
-            case new TimeType:
+            case new TimeType():
                 return TimeColumnFactory::buildColumn($column);
-            case new IntegerType:
-            case new SmallIntType:
-            case new BigIntType:
+            case new IntegerType():
+            case new SmallIntType():
+            case new BigIntType():
                 return IntegerColumnFactory::buildColumn($column);
-            case new BooleanType:
+            case new BooleanType():
                 return new BooleanColumn($column);
-            case new JsonType:
+            case new JsonType():
                 return new JsonColumn($column);
             default:
-                throw new UnsupportedColumnException;
+                throw new UnsupportedColumnException();
         }
     }
 }

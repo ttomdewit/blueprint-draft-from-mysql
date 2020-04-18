@@ -2,16 +2,18 @@
 
 namespace Tests;
 
+use function array_filter;
 use Doctrine\DBAL\Schema\Column;
 use Doctrine\DBAL\Schema\Table;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\DB;
 use Orchestra\Testbench\TestCase as BaseTestCase;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-use function array_filter;
-use function array_reduce;
-use function array_search;
 
-class TestCase extends BaseTestCase
+/**
+ * @internal
+ * @coversNothing
+ */
+final class TestCase extends BaseTestCase
 {
     use DatabaseTransactions;
 
@@ -19,7 +21,7 @@ class TestCase extends BaseTestCase
     {
         parent::setUp();
 
-        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
     }
 
     protected function getEnvironmentSetUp($app)
@@ -40,8 +42,8 @@ class TestCase extends BaseTestCase
                 ->getDoctrineSchemaManager()
                 ->listTables(),
             function (Table $table) {
-                return $table->getName() !== 'migrations';
-            },
+          return 'migrations' !== $table->getName();
+      },
         );
     }
 
@@ -61,7 +63,6 @@ class TestCase extends BaseTestCase
 
         return $table->getColumns();
     }
-
 
     protected function getColumnFromTable(string $table, string $column): Column
     {

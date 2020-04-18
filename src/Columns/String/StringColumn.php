@@ -1,8 +1,6 @@
 <?php
 
-
 namespace BlueprintDraftFromMySQLSource\Columns\String;
-
 
 use BlueprintDraftFromMySQLSource\Columns\AbstractColumn;
 use BlueprintDraftFromMySQLSource\DataTypes;
@@ -19,6 +17,6 @@ final class StringColumn extends AbstractColumn implements ColumnDataTypeInterfa
 
     public function hasCustomLength(): bool
     {
-        return $this->getLength() !== MySQL57Platform::LENGTH_LIMIT_TINYTEXT;
+        return MySQL57Platform::LENGTH_LIMIT_TINYTEXT !== $this->getLength();
     }
 }

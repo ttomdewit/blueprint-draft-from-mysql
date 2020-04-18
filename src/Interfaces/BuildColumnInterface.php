@@ -1,6 +1,5 @@
 <?php
 
-
 namespace BlueprintDraftFromMySQLSource\Interfaces;
 
 use Doctrine\DBAL\Schema\Column;

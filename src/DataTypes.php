@@ -14,4 +14,9 @@ final class DataTypes
     public const INCREMENTS = 'increments';
     public const SMALLINCREMENTS = 'smallincrements';
     public const BIGINCREMENTS = 'bigincrements';
+    public const INTEGER = 'integer';
+    public const BIGINTEGER = 'biginteger';
+    public const SMALLINTEGER = 'smallinteger';
+    public const BOOLEAN = 'boolean';
+    public const JSON = 'json';
 }

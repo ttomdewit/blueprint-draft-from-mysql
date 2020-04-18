@@ -2,16 +2,18 @@
 
 namespace BlueprintDraftFromMySQLSource\Factories;
 
-use BlueprintDraftFromMySQLSource\Columns\Integer\BigIncrementsColumn;
-use BlueprintDraftFromMySQLSource\Columns\Integer\SmallIncrementsColumn;
+use BlueprintDraftFromMySQLSource\Columns\Boolean\BooleanColumn;
+use BlueprintDraftFromMySQLSource\Columns\Json\JsonColumn;
 use BlueprintDraftFromMySQLSource\Columns\String\StringColumn;
 use BlueprintDraftFromMySQLSource\Interfaces\BuildColumnInterface;
 use BlueprintDraftFromMySQLSource\Interfaces\ColumnInterface;
 use Doctrine\DBAL\Schema\Column;
 use Doctrine\DBAL\Types\BigIntType;
+use Doctrine\DBAL\Types\BooleanType;
 use Doctrine\DBAL\Types\DateTimeType;
 use Doctrine\DBAL\Types\DateType;
 use Doctrine\DBAL\Types\IntegerType;
+use Doctrine\DBAL\Types\JsonType;
 use Doctrine\DBAL\Types\SmallIntType;
 use Doctrine\DBAL\Types\StringType;
 use Doctrine\DBAL\Types\TextType;
@@ -36,13 +38,15 @@ final class ColumnFactory implements BuildColumnInterface
                 return TimeColumnFactory::buildColumn($column);
                 break;
             case new IntegerType:
+            case new SmallIntType:
+            case new BigIntType:
                 return IntegerColumnFactory::buildColumn($column);
                 break;
-            case new SmallIntType:
-                return new SmallIncrementsColumn($column);
+            case new BooleanType:
+                return new BooleanColumn($column);
                 break;
-            case new BigIntType:
-                return new BigIncrementsColumn($column);
+            case new JsonType:
+                return new JsonColumn($column);
                 break;
         }
     }

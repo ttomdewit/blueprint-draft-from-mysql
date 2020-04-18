@@ -3,32 +3,28 @@
 
 namespace BlueprintDraftFromMySQLSource\Factories;
 
-use BlueprintDraftFromMySQLSource\Columns\Integer\BigIntegerColumn;
-use BlueprintDraftFromMySQLSource\Columns\Integer\IntegerColumn;
-use BlueprintDraftFromMySQLSource\Columns\Integer\SmallIntegerColumn;
+use BlueprintDraftFromMySQLSource\Columns\Integer\BigIncrementsColumn;
+use BlueprintDraftFromMySQLSource\Columns\Integer\IncrementsColumn;
+use BlueprintDraftFromMySQLSource\Columns\Integer\SmallIncrementsColumn;
 use BlueprintDraftFromMySQLSource\Interfaces\BuildColumnInterface;
 use BlueprintDraftFromMySQLSource\Interfaces\ColumnInterface;
 use Doctrine\DBAL\Schema\Column;
 use Doctrine\DBAL\Types\BigIntType;
 use Doctrine\DBAL\Types\SmallIntType;
 
-final class IntegerColumnFactory implements BuildColumnInterface
+final class IncrementColumnFactory implements BuildColumnInterface
 {
     public static function buildColumn(Column $column): ColumnInterface
     {
-        if ($column->getAutoincrement()) {
-            return IncrementColumnFactory::buildColumn($column);
-        }
-
         switch ($column->getType()) {
             case new SmallIntType:
-                return new SmallIntegerColumn($column);
+                return new SmallIncrementsColumn($column);
                 break;
             case new BigIntType:
-                return new BigIntegerColumn($column);
+                return new BigIncrementsColumn($column);
                 break;
             default:
-                return new IntegerColumn($column);
+                return new IncrementsColumn($column);
                 break;
         }
     }

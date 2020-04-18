@@ -10,7 +10,7 @@ use Tests\TestCase;
  * @internal
  * @coversNothing
  */
-final class StringColumnFactoryTest extends TestCase
+class StringColumnFactoryTest extends TestCase
 {
     public function testItBuildsTextColumn(): void
     {

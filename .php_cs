@@ -13,6 +13,6 @@ return PhpCsFixer\Config::create()
         '@PhpCsFixer:risky' => true,
     ])
     ->setFinder(PhpCsFixer\Finder::create()
-        ->exclude('vendor')
+        ->exclude(['vendor', 'tests'])
         ->in(__DIR__)
     );

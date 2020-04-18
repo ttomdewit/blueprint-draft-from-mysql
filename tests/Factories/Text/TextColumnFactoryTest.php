@@ -12,7 +12,7 @@ use Tests\TestCase;
  * @internal
  * @coversNothing
  */
-final class TextColumnFactoryTest extends TestCase
+class TextColumnFactoryTest extends TestCase
 {
     public function testItBuildsTextColumn(): void
     {

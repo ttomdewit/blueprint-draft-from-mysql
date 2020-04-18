@@ -5,11 +5,7 @@ namespace Tests\Columns;
 use BlueprintDraftFromMySQLSource\Factories\ColumnFactory;
 use Tests\TestCase;
 
-/**
- * @internal
- * @coversNothing
- */
-final class ColumnDataTypeTest extends TestCase
+class ColumnDataTypeTest extends TestCase
 {
     public function dataTypeProvider()
     {

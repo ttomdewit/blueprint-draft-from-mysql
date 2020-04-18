@@ -13,7 +13,7 @@ use Orchestra\Testbench\TestCase as BaseTestCase;
  * @internal
  * @coversNothing
  */
-final class TestCase extends BaseTestCase
+class TestCase extends BaseTestCase
 {
     use DatabaseTransactions;
 

@@ -9,7 +9,7 @@ use Tests\TestCase;
  * @internal
  * @coversNothing
  */
-final class LengthColumnTest extends TestCase
+class LengthColumnTest extends TestCase
 {
     public function testItHasADefaultLength(): void
     {

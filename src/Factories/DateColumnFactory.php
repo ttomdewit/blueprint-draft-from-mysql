@@ -5,6 +5,7 @@ namespace BlueprintDraftFromMySQLSource\Factories;
 
 use BlueprintDraftFromMySQLSource\Columns\Date\DateColumn;
 use BlueprintDraftFromMySQLSource\Columns\Date\DateTimeColumn;
+use BlueprintDraftFromMySQLSource\Exceptions\UnsupportedColumnException;
 use BlueprintDraftFromMySQLSource\Interfaces\BuildColumnInterface;
 use BlueprintDraftFromMySQLSource\Interfaces\ColumnInterface;
 use Doctrine\DBAL\Schema\Column;
@@ -23,5 +24,7 @@ final class DateColumnFactory implements BuildColumnInterface
         if (get_class($column->getType()) === DateTimeType::class) {
             return new DateTimeColumn($column);
         }
+
+        throw new UnsupportedColumnException;
     }
 }

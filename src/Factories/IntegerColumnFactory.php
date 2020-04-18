@@ -23,13 +23,10 @@ final class IntegerColumnFactory implements BuildColumnInterface
         switch ($column->getType()) {
             case new SmallIntType:
                 return new SmallIntegerColumn($column);
-                break;
             case new BigIntType:
                 return new BigIntegerColumn($column);
-                break;
             default:
                 return new IntegerColumn($column);
-                break;
         }
     }
 }

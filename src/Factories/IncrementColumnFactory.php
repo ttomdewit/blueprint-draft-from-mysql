@@ -19,13 +19,10 @@ final class IncrementColumnFactory implements BuildColumnInterface
         switch ($column->getType()) {
             case new SmallIntType:
                 return new SmallIncrementsColumn($column);
-                break;
             case new BigIntType:
                 return new BigIncrementsColumn($column);
-                break;
             default:
                 return new IncrementsColumn($column);
-                break;
         }
     }
 }

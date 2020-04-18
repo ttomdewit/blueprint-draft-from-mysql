@@ -4,6 +4,7 @@
 namespace BlueprintDraftFromMySQLSource\Factories;
 
 use BlueprintDraftFromMySQLSource\Columns\Time\TimeColumn;
+use BlueprintDraftFromMySQLSource\Exceptions\UnsupportedColumnException;
 use BlueprintDraftFromMySQLSource\Interfaces\BuildColumnInterface;
 use BlueprintDraftFromMySQLSource\Interfaces\ColumnInterface;
 use Doctrine\DBAL\Schema\Column;
@@ -17,5 +18,7 @@ final class TimeColumnFactory implements BuildColumnInterface
         if (get_class($column->getType()) === TimeType::class) {
             return new TimeColumn($column);
         }
+
+        throw new UnsupportedColumnException;
     }
 }

@@ -5,6 +5,7 @@ namespace BlueprintDraftFromMySQLSource\Factories;
 use BlueprintDraftFromMySQLSource\Columns\Boolean\BooleanColumn;
 use BlueprintDraftFromMySQLSource\Columns\Json\JsonColumn;
 use BlueprintDraftFromMySQLSource\Columns\String\StringColumn;
+use BlueprintDraftFromMySQLSource\Exceptions\UnsupportedColumnException;
 use BlueprintDraftFromMySQLSource\Interfaces\BuildColumnInterface;
 use BlueprintDraftFromMySQLSource\Interfaces\ColumnInterface;
 use Doctrine\DBAL\Schema\Column;
@@ -26,28 +27,23 @@ final class ColumnFactory implements BuildColumnInterface
         switch ($column->getType()) {
             case new TextType:
                 return TextColumnFactory::buildColumn($column);
-                break;
             case new StringType:
                 return new StringColumn($column);
-                break;
             case new DateType:
             case new DateTimeType:
                 return DateColumnFactory::buildColumn($column);
-                break;
             case new TimeType:
                 return TimeColumnFactory::buildColumn($column);
-                break;
             case new IntegerType:
             case new SmallIntType:
             case new BigIntType:
                 return IntegerColumnFactory::buildColumn($column);
-                break;
             case new BooleanType:
                 return new BooleanColumn($column);
-                break;
             case new JsonType:
                 return new JsonColumn($column);
-                break;
+            default:
+                throw new UnsupportedColumnException;
         }
     }
 }

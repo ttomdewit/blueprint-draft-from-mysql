@@ -8,6 +8,7 @@ use BlueprintDraftFromMySQLSource\Columns\String\StringColumn;
 use BlueprintDraftFromMySQLSource\Exceptions\UnsupportedColumnException;
 use BlueprintDraftFromMySQLSource\Interfaces\BuildColumnInterface;
 use BlueprintDraftFromMySQLSource\Interfaces\ColumnInterface;
+use BlueprintDraftFromMySQLSource\Types\TimestampType;
 use Doctrine\DBAL\Schema\Column;
 use Doctrine\DBAL\Types\BigIntType;
 use Doctrine\DBAL\Types\BooleanType;
@@ -31,6 +32,7 @@ final class ColumnFactory implements BuildColumnInterface
                 return new StringColumn($column);
             case new DateType():
             case new DateTimeType():
+            case new TimestampType():
                 return DateColumnFactory::buildColumn($column);
             case new TimeType():
                 return TimeColumnFactory::buildColumn($column);

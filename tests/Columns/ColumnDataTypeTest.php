@@ -4,6 +4,7 @@ namespace Tests\Columns;
 
 use BlueprintDraftFromMySQLSource\Factories\ColumnFactory;
 use Tests\TestCase;
+use function dump;
 
 class ColumnDataTypeTest extends TestCase
 {
@@ -103,12 +104,12 @@ class ColumnDataTypeTest extends TestCase
             [
                 'time_columns',
                 'timestamp',
-                'datetime',
+                'timestamp',
             ],
             [
                 'time_columns',
                 'timestamp_timezone',
-                'datetime',
+                'timestamp',
             ],
             [
                 'unsigned_integer_columns',

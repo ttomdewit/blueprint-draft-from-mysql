@@ -2,19 +2,16 @@
 
 namespace BlueprintDraftFromMySQLSource\Columns;
 
-use BlueprintDraftFromMySQLSource\DataTypes;
 use BlueprintDraftFromMySQLSource\Interfaces\ColumnCustomLengthInterface;
+use BlueprintDraftFromMySQLSource\Interfaces\ColumnDataTypeInterface;
 use BlueprintDraftFromMySQLSource\Interfaces\ColumnDefinitionInterface;
 use BlueprintDraftFromMySQLSource\Interfaces\ColumnInterface;
 use BlueprintDraftFromMySQLSource\Interfaces\ColumnLengthInterface;
 use BlueprintDraftFromMySQLSource\Interfaces\NullableColumnInterface;
 use Doctrine\DBAL\Schema\Column;
-use function array_key_exists;
-use function implode;
-use function method_exists;
 use function sprintf;
 
-abstract class AbstractColumn implements ColumnInterface, ColumnLengthInterface, ColumnDefinitionInterface, NullableColumnInterface
+abstract class AbstractColumn implements ColumnInterface, ColumnLengthInterface, ColumnDefinitionInterface, ColumnDataTypeInterface, NullableColumnInterface
 {
     /**
      * @var Column
@@ -38,16 +35,12 @@ abstract class AbstractColumn implements ColumnInterface, ColumnLengthInterface,
 
     public function isNullable(): bool
     {
-        return ! $this->getColumn()->getNotnull();
+        return !$this->getColumn()->getNotnull();
     }
 
     public function getColumnDefinition(): string
     {
         $definition = $this->getDataType();
-
-        if (array_key_exists($this->getDataType(), DataTypes::typeMap)) {
-            $definition = implode(DataTypes::typeMap[$this->getDataType()], '|');
-        }
 
         if ($this->isNullable()) {
             $definition = sprintf(

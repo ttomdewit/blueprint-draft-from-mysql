@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use BlueprintDraftFromMySQLSource\BlueprintDraftFromMySQLSourceServiceProvider;
 use function array_filter;
 use Doctrine\DBAL\Schema\Column;
 use Doctrine\DBAL\Schema\Table;
@@ -34,6 +35,13 @@ class TestCase extends BaseTestCase
             'host' => '127.0.0.1',
             'username' => 'root',
         ]);
+    }
+
+    protected function getPackageProviders($app)
+    {
+        return [
+            BlueprintDraftFromMySQLSourceServiceProvider::class
+        ];
     }
 
     protected function getTables(): array

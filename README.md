@@ -52,8 +52,8 @@ As per the [Laravel documentation](https://laravel.com/docs/7.x/migrations#creat
 - [x] `text`
 - [x] `time`
 - [x] `timeTz`  Due to limitations it's rendered as `time`
-- [x] `timestamp`  Due to limitations it's rendered as `dateTime`
-- [x] `timestampTz`  Due to limitations it's rendered as `dateTime`
+- [x] `timestamp`
+- [x] `timestampTz`
 - [x] `tinyIncrements` Rendered as `boolean`
 - [x] `tinyInteger` Rendered as `boolean`
 - [x] `unsignedBigInteger` Rendered as `biginteger unsigned`
@@ -112,16 +112,3 @@ models:
     content: longtext
     published_at: nullable timestamp
 ```
-
-Due to limitations in DBAL and the actual types columns represent, the following YAML is generated:
-
-```yaml
-models:
-  Post:
-    title: string:400
-    content: longtext
-    published_at: nullable datetime|datetimetz|timestamp|timestamptz
-```
-
-As you can see in the list "Available Column Types" these date columns are all defined as `DateTime`.
-Since we can't reliably convert to Laravel conventions, we'll include every option and let you decide.

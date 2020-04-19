@@ -2,14 +2,18 @@
 
 namespace BlueprintDraftFromMySQLSource;
 
+use function array_map;
 use BlueprintDraftFromMySQLSource\Factories\ColumnFactory;
+use BlueprintDraftFromMySQLSource\Interfaces\ColumnDefinitionInterface;
 use Doctrine\DBAL\Schema\Column;
 use Doctrine\DBAL\Schema\Table;
 use Illuminate\Support\Str;
-use function array_map;
 
 class BlueprintDraftGenerator
 {
+    /**
+     * @return array<array<string, string>>
+     */
     public function generateModelDefinitionForTable(Table $table): array
     {
         $name = Str::ucfirst(Str::singular($table->getName()));
@@ -21,6 +25,9 @@ class BlueprintDraftGenerator
         ];
     }
 
+    /**
+     * @return array<string, string>
+     */
     private function generateColumnDefinitions(Table $table): array
     {
         $columns = $table->getColumns();
@@ -28,7 +35,8 @@ class BlueprintDraftGenerator
         unset($columns['id']);
 
         return array_map(
-            function (Column $schemaColumn) {
+            function (Column $schemaColumn): string {
+                /** @var ColumnDefinitionInterface $column */
                 $column = ColumnFactory::buildColumn($schemaColumn);
 
                 return $column->getColumnDefinition();

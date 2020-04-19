@@ -15,13 +15,15 @@ class PostModelTest extends TestCase
         // When
         $generator = new BlueprintDraftGenerator();
 
+        dump($generator->generateModelDefinitionForTable($table));
+
         // Then
         $this->assertEquals(
             [
                 'Post' => [
                     'title' => 'string:400',
                     'content' => 'longtext',
-                    'published_at' => 'nullable datetime|datetimetz|timestamp|timestamptz',
+                    'published_at' => 'nullable timestamp',
                 ],
             ],
             $generator->generateModelDefinitionForTable($table)

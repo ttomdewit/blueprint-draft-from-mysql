@@ -90,3 +90,38 @@ As per the [Laravel documentation](https://laravel.com/docs/7.x/migrations#creat
 - [ ] index
 - [ ] primary
 - [ ] foreign
+
+## Example MySQL input and YAML output
+
+```mysql
+CREATE TABLE `posts` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(400) NOT NULL,
+  `content` longtext NOT NULL,
+  `published_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
+
+This YAML has been taken from [Blueprint's README](https://github.com/laravel-shift/blueprint#defining-components).
+
+```yaml
+models:
+  Post:
+    title: string:400
+    content: longtext
+    published_at: nullable timestamp
+```
+
+Due to limitations in DBAL and the actual types columns represent, the following YAML is generated:
+
+```yaml
+models:
+  Post:
+    title: string:400
+    content: longtext
+    published_at: nullable datetime|datetimetz|timestamp|timestamptz
+```
+
+As you can see in the list "Available Column Types" these date columns are all defined as `DateTime`.
+Since we can't reliably convert to Laravel conventions, we'll include every option and let you decide.

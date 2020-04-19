@@ -21,7 +21,8 @@ class TestCase extends BaseTestCase
     {
         parent::setUp();
 
-        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/database/migrations/columns');
+        $this->loadMigrationsFrom(__DIR__.'/database/migrations/models');
     }
 
     protected function getEnvironmentSetUp($app)

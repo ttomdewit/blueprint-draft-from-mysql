@@ -19,4 +19,17 @@ final class DataTypes
     public const SMALLINTEGER = 'smallinteger';
     public const BOOLEAN = 'boolean';
     public const JSON = 'json';
+
+    public const DATETIMETZ = 'datetimetz';
+    public const TIMESTAMP = 'timestamp';
+    public const TIMESTAMPTZ = 'timestamptz';
+
+    public const typeMap = [
+        self::DATETIME => [
+            self::DATETIME,
+            self::DATETIMETZ,
+            self::TIMESTAMP,
+            self::TIMESTAMPTZ,
+        ],
+    ];
 }

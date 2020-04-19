@@ -14,10 +14,11 @@ class LengthColumnTest extends TestCase
     public function testItHasADefaultLength(): void
     {
         // Given
+        $schemaTable = $this->getTable('string_columns');
         $schemaColumn = $this->getColumnFromTable('string_columns', 'string_column');
 
         // When
-        $column = ColumnFactory::buildColumn($schemaColumn);
+        $column = ColumnFactory::buildColumn($schemaTable, $schemaColumn);
 
         // Then
         static::assertFalse($column->hasCustomLength());
@@ -27,10 +28,11 @@ class LengthColumnTest extends TestCase
     public function testItCanSetACustomLength(): void
     {
         // Given
+        $schemaTable = $this->getTable('string_columns');
         $schemaColumn = $this->getColumnFromTable('string_columns', 'string_column_custom_length');
 
         // When
-        $column = ColumnFactory::buildColumn($schemaColumn);
+        $column = ColumnFactory::buildColumn($schemaTable, $schemaColumn);
 
         // Then
         static::assertTrue($column->hasCustomLength());
@@ -40,10 +42,11 @@ class LengthColumnTest extends TestCase
     public function testItCanSetACustomLongLength(): void
     {
         // Given
+        $schemaTable = $this->getTable('string_columns');
         $schemaColumn = $this->getColumnFromTable('string_columns', 'string_column_custom_long_length');
 
         // When
-        $column = ColumnFactory::buildColumn($schemaColumn);
+        $column = ColumnFactory::buildColumn($schemaTable, $schemaColumn);
 
         // Then
         static::assertTrue($column->hasCustomLength());

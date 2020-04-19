@@ -10,6 +10,7 @@ use BlueprintDraftFromMySQLSource\Interfaces\BuildColumnInterface;
 use BlueprintDraftFromMySQLSource\Interfaces\ColumnInterface;
 use BlueprintDraftFromMySQLSource\Types\TimestampType;
 use Doctrine\DBAL\Schema\Column;
+use Doctrine\DBAL\Schema\Table;
 use Doctrine\DBAL\Types\BigIntType;
 use Doctrine\DBAL\Types\BooleanType;
 use Doctrine\DBAL\Types\DateTimeType;
@@ -23,27 +24,27 @@ use Doctrine\DBAL\Types\TimeType;
 
 final class ColumnFactory implements BuildColumnInterface
 {
-    public static function buildColumn(Column $column): ColumnInterface
+    public static function buildColumn(Table $table, Column $column): ColumnInterface
     {
         switch ($column->getType()) {
             case new TextType():
-                return TextColumnFactory::buildColumn($column);
+                return TextColumnFactory::buildColumn($table, $column);
             case new StringType():
-                return new StringColumn($column);
+                return new StringColumn($table, $column);
             case new DateType():
             case new DateTimeType():
             case new TimestampType():
-                return DateColumnFactory::buildColumn($column);
+                return DateColumnFactory::buildColumn($table, $column);
             case new TimeType():
-                return TimeColumnFactory::buildColumn($column);
+                return TimeColumnFactory::buildColumn($table, $column);
             case new IntegerType():
             case new SmallIntType():
             case new BigIntType():
-                return IntegerColumnFactory::buildColumn($column);
+                return IntegerColumnFactory::buildColumn($table, $column);
             case new BooleanType():
-                return new BooleanColumn($column);
+                return new BooleanColumn($table, $column);
             case new JsonType():
-                return new JsonColumn($column);
+                return new JsonColumn($table, $column);
             default:
                 throw new UnsupportedColumnException();
         }

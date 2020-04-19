@@ -4,7 +4,6 @@ namespace Tests\Columns;
 
 use BlueprintDraftFromMySQLSource\Factories\ColumnFactory;
 use Tests\TestCase;
-use function dump;
 
 class ColumnDataTypeTest extends TestCase
 {
@@ -183,10 +182,11 @@ class ColumnDataTypeTest extends TestCase
         string $expectedDataType
     ): void {
         // Given
+        $schemaTable = $this->getTable($table);
         $schemaColumn = $this->getColumnFromTable($table, $column);
 
         // When
-        $column = ColumnFactory::buildColumn($schemaColumn);
+        $column = ColumnFactory::buildColumn($schemaTable, $schemaColumn);
         $dataType = $column->getDataType();
 
         // Then

@@ -5,12 +5,12 @@ namespace Tests\Models;
 use BlueprintDraftFromMySQLSource\BlueprintDraftGenerator;
 use Tests\TestCase;
 
-class PostModelTest extends TestCase
+class UserModelTest extends TestCase
 {
     public function test_it_generates_post_model_from_readme_example(): void
     {
         // Given
-        $table = $this->getTable('posts');
+        $table = $this->getTable('users');
 
         // When
         $generator = new BlueprintDraftGenerator();
@@ -18,10 +18,10 @@ class PostModelTest extends TestCase
         // Then
         $this->assertEquals(
             [
-                'Post' => [
-                    'title' => 'string:400',
-                    'content' => 'longtext',
-                    'published_at' => 'nullable timestamp',
+                'User' => [
+                    'name' => 'string',
+                    'created_at' => 'nullable timestamp',
+                    'updated_at' => 'nullable timestamp',
                 ],
             ],
             $generator->generateModelDefinitionForTable($table)

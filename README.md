@@ -112,3 +112,53 @@ models:
     content: longtext
     published_at: nullable timestamp
 ```
+
+### Example relationships
+
+```mysql
+CREATE TABLE `users` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `posts` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(400) NOT NULL,
+  `content` longtext NOT NULL,
+  `published_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `comments` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `author_id` bigint(20) unsigned NOT NULL,
+  `post_id` bigint(20) unsigned NOT NULL,
+  `content` longtext NOT NULL,
+  `published_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `comments_author_id_foreign` (`author_id`),
+  KEY `comments_post_id_foreign` (`post_id`),
+  CONSTRAINT `comments_author_id_foreign` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `comments_post_id_foreign` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
+
+```yaml
+models:
+  User:
+    name: string
+    created_at: nullable timestamp
+    updated_at: nullable timestamp
+  Post:
+    title: string:400
+    content: longtext
+    published_at: nullable timestamp
+  Comment:
+    author_id: id:user
+    post_id: id
+    content: longtext
+    published_at: nullable timestamp
+```

@@ -15,10 +15,11 @@ class StringColumnFactoryTest extends TestCase
     public function testItBuildsTextColumn(): void
     {
         // Given
+        $schemaTable = $this->getTable('string_columns');
         $schemaColumn = $this->getColumnFromTable('string_columns', 'string_column');
 
         // When
-        $column = ColumnFactory::buildColumn($schemaColumn);
+        $column = ColumnFactory::buildColumn($schemaTable, $schemaColumn);
 
         // Then
         static::assertInstanceOf(StringColumn::class, $column);

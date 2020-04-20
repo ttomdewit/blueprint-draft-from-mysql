@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Factories\Date;
+namespace Tests\Factories\DateColumnFactory;
 
 use BlueprintDraftFromMySQLSource\Exceptions\UnsupportedColumnException;
 use BlueprintDraftFromMySQLSource\Factories\DateColumnFactory;

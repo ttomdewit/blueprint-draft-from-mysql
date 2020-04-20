@@ -8,7 +8,7 @@ use Doctrine\DBAL\Types\Type;
 
 class TimestampType extends Type
 {
-    public const TIMESTAMP = 'timestamp'; // modify to match your type name
+    public const TIMESTAMP = 'timestamp';
 
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {

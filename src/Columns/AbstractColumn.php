@@ -66,11 +66,16 @@ abstract class AbstractColumn implements ColumnInterface, ColumnLengthInterface,
         }
 
         if ($this instanceof ColumnCustomLengthInterface) {
-            if ($this->hasCustomLength()) {
+            $length = $this->getLength();
+
+            if (
+                $this->hasCustomLength()
+                && null !== $length
+            ) {
                 $definition = sprintf(
                     '%s:%d',
                     $this->getDataType(),
-                    $this->getLength()
+                    $length
                 );
             }
         }

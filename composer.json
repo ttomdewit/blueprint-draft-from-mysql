@@ -36,5 +36,12 @@
     "psr-4": {
       "Tests\\": "tests"
     }
+  },
+  "scripts": {
+    "qa": [
+      "php-cs-fixer fix",
+      "psalm --show-info=true",
+      "phpstan analyse src --level=8"
+    ]
   }
 }

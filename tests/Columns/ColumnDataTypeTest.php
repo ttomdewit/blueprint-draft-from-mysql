@@ -175,6 +175,10 @@ class ColumnDataTypeTest extends TestCase
 
     /**
      * @dataProvider dataTypeProvider
+     * @param string $table
+     * @param string $column
+     * @param string $expectedDataType
+     * @throws \BlueprintDraftFromMySQLSource\Exceptions\UnsupportedColumnException
      */
     public function testItDeterminesCorrectDatatypeForColumn(
         string $table,

@@ -90,6 +90,14 @@ class BlueprintDraftGenerator
             unset($columns['created_at'], $columns['updated_at']);
         }
 
+        if (
+            \array_key_exists('deleted_at', $columns)
+        ) {
+            $columns['softdeletes'] = 'softdeletes';
+
+            unset($columns['deleted_at']);
+        }
+
         return $columns;
     }
 }

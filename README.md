@@ -150,8 +150,7 @@ CREATE TABLE `comments` (
 models:
   User:
     name: string
-    created_at: nullable timestamp
-    updated_at: nullable timestamp
+    timestamps
   Post:
     title: string:400
     content: longtext

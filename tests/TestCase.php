@@ -22,8 +22,8 @@ class TestCase extends BaseTestCase
     {
         parent::setUp();
 
-        $this->loadMigrationsFrom(__DIR__.'/database/migrations/columns');
-        $this->loadMigrationsFrom(__DIR__.'/database/migrations/models');
+        $this->loadMigrationsFrom(__DIR__ . '/database/migrations/columns');
+        $this->loadMigrationsFrom(__DIR__ . '/database/migrations/models');
     }
 
     protected function getEnvironmentSetUp($app)
@@ -51,8 +51,8 @@ class TestCase extends BaseTestCase
                 ->getDoctrineSchemaManager()
                 ->listTables(),
             function (Table $table) {
-          return 'migrations' !== $table->getName();
-      },
+                return 'migrations' !== $table->getName();
+            }
         );
     }
 

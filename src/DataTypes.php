@@ -20,4 +20,5 @@ final class DataTypes
     public const BOOLEAN = 'boolean';
     public const JSON = 'json';
     public const TIMESTAMP = 'timestamp';
+    public const FLOAT = 'float';
 }

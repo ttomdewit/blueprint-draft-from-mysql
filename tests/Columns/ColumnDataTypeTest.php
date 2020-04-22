@@ -170,6 +170,11 @@ class ColumnDataTypeTest extends TestCase
                 'macaddress_column',
                 'string',
             ],
+            [
+                'float_columns',
+                'float_column',
+                'float',
+            ],
         ];
     }
 

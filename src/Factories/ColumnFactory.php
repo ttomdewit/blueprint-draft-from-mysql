@@ -3,6 +3,7 @@
 namespace BlueprintDraftFromMySQLSource\Factories;
 
 use BlueprintDraftFromMySQLSource\Columns\Boolean\BooleanColumn;
+use BlueprintDraftFromMySQLSource\Columns\Float\FloatColumn;
 use BlueprintDraftFromMySQLSource\Columns\Json\JsonColumn;
 use BlueprintDraftFromMySQLSource\Columns\String\StringColumn;
 use BlueprintDraftFromMySQLSource\Exceptions\UnsupportedColumnException;
@@ -15,6 +16,7 @@ use Doctrine\DBAL\Types\BigIntType;
 use Doctrine\DBAL\Types\BooleanType;
 use Doctrine\DBAL\Types\DateTimeType;
 use Doctrine\DBAL\Types\DateType;
+use Doctrine\DBAL\Types\FloatType;
 use Doctrine\DBAL\Types\IntegerType;
 use Doctrine\DBAL\Types\JsonType;
 use Doctrine\DBAL\Types\SmallIntType;
@@ -45,6 +47,8 @@ final class ColumnFactory implements BuildColumnInterface
                 return new BooleanColumn($table, $column);
             case new JsonType():
                 return new JsonColumn($table, $column);
+            case new FloatType():
+                return new FloatColumn($table, $column);
             default:
                 throw new UnsupportedColumnException();
         }

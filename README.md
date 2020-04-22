@@ -22,7 +22,7 @@ As per the [Laravel documentation](https://laravel.com/docs/7.x/migrations#creat
 - [ ] `decimal`
 - [ ] `double`
 - [ ] `enum`
-- [ ] `float`
+- [x] `float`
 - [ ] `geometry`
 - [ ] `geometryCollection`
 - [x] `increments`

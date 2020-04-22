@@ -47,6 +47,8 @@ class BlueprintDraftGenerator
 
         $columns = $this->generateColumnDefinitions($table);
 
+        $columns = $this->convertToShorthands($columns);
+
         return [
             $name => $columns,
         ];
@@ -70,5 +72,24 @@ class BlueprintDraftGenerator
             },
             $columns
         );
+    }
+
+    /**
+     * @param array<string, string> $columns
+     *
+     * @return array<string, string>
+     */
+    private function convertToShorthands(array $columns): array
+    {
+        if (
+            \array_key_exists('created_at', $columns)
+            && \array_key_exists('updated_at', $columns)
+        ) {
+            $columns['timestamps'] = 'timestamps';
+
+            unset($columns['created_at'], $columns['updated_at']);
+        }
+
+        return $columns;
     }
 }
